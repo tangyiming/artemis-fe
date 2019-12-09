@@ -1,5 +1,8 @@
 # autool-fe
 
+## Preview
+[bilibili演示](https://www.bilibili.com/video/av78660912/)
+
 ## Introduction
 这是一个包含头部菜单与侧边多层级菜单的基于Vue.js的前端骨架项目，UI组件使用的是ant design的vue版本。
 
