@@ -35,7 +35,7 @@
                             <!-- todo 2:登陆了显示登陆人名字，否则显示登陆按钮 -->
                             <a-dropdown :trigger="['click']">
                                 <a class="ant-dropdown-link" href>
-                                    <!--yiming.tang-->
+                                    <!--xxx-->
                                     <a-icon type="down" />
                                 </a>
                                 <a-menu slot="overlay">
