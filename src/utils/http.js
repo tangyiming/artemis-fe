@@ -14,7 +14,10 @@ function checkCode(response = {}) {
 axios.defaults.withCredentials = true
 axios.defaults.baseURL = '/api/'
 //process.env.NODE_ENV === 'development' ? '/api/' : ''
-axios.interceptors.request.use(config => config, error => Promise.reject(error))
+axios.interceptors.request.use(
+    config => config,
+    error => Promise.reject(error)
+)
 axios.interceptors.response.use(
     response => checkCode(response),
     err => {

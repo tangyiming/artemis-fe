@@ -15,7 +15,6 @@ Vue.use(Antd)
 //全局注册组件
 Vue.component('left-sider', LeftSider)
 
-
 new Vue({
     router,
     store,

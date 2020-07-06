@@ -1,5 +1,5 @@
 module.exports = {
-    configureWebpack: (config) => {
+    configureWebpack: config => {
         config.module.rules.push({
             test: /\.md$/,
             use: [
