@@ -20,4 +20,4 @@ vue.js/vuex/ant-design-vue/axios/vue-test-utils/jest
 
 ## 使用
 - 请根据自己的需要删除页面和代码
-- 本项目所涉及后端代码请看仓库：https://github.com/tangyiming/artemis (将整理后上传github)
+- 本项目所涉及后端代码请看仓库：https://github.com/tangyiming/artemis
