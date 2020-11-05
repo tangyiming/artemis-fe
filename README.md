@@ -5,7 +5,7 @@
 > 在原项目基础上用户新增：
 > - 登录退出与token凭证功能
 > - 单元测试集成
-> - Doker化
+> - Docker化
 > - SetTimeOut递归调用
 > - FormData上传多文件与Json等代码以供学习参考
 > - 修复若干bug
