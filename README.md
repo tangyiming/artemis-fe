@@ -21,3 +21,44 @@ vue.js/vuex/ant-design-vue/axios/vue-test-utils/jest
 ## 使用
 - 请根据自己的需要删除页面和代码
 - 本项目所涉及后端代码请看仓库：https://github.com/tangyiming/artemis
+
+## 部署
+### 常规部署方式
+拉取代码
+```bash
+[root@localhost conf.d]# npm install
+[root@localhost conf.d]# npm run build
+```
+配置nginx server项
+
+
+```bash
+[root@localhost conf.d]# vi default.conf
+```
+
+> listen       8080;
+> location / {
+>     root /opt/artemis-fe/dist/;
+>     try_files $uri $uri/ /index.html = 404;
+> }
+
+```bash 
+[root@localhost conf.d]# nginx -c /etc/nginx/nginx.conf
+[root@localhost conf.d]# nginx -s reload
+```
+关闭防火墙，以防止外面无法访问
+```bash
+[root@localhost conf.d]# systemctl stop firewalld.service
+```
+ 
+### Docker化部署方式（暂不用这种方式部署）
+在项目中添加docker与nginx配置
+给服务器生成sshkey添加到gitlab
+在服务器上拉取前端代码
+进行image构建（tag随版本变更），和容器运行
+```bash
+[root@localhost opt]# docker build artemis-fe/ -t artemis-fe:1.0.0
+[root@localhost opt]# docker run -d -p 8080:80 artemis-fe:1.0.0
+```
+ 
+参考：https://cli.vuejs.org/guide/deployment.html#docker-nginx
