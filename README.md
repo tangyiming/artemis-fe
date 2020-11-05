@@ -36,10 +36,14 @@ vue.js/vuex/ant-design-vue/axios/vue-test-utils/jest
 [root@localhost conf.d]# vi default.conf
 ```
 
-> listen       8080;
+> listen 8080;
+>
 > location / {
->     root /opt/artemis-fe/dist/;
->     try_files $uri $uri/ /index.html = 404;
+>
+> root /opt/artemis-fe/dist/;
+>
+> try_files $uri $uri/ /index.html = 404;
+>
 > }
 
 ```bash 
