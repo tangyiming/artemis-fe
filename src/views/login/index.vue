@@ -93,7 +93,7 @@ export default {
             this.form.validateFields((err, values) => {
                 if (!err) {
                     login(values).then(res => {
-                        if (res.success) {
+                        if (res.succ) {
                             localStorage['token'] = JSON.stringify(res.data)
                             let userid = values['userid']
                             localStorage['userid'] = userid
