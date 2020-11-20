@@ -15,7 +15,7 @@ Vue.use(Antd)
 //全局注册组件
 Vue.component('left-sider', LeftSider)
 
-//全局设置s
+//全局设置
 Vue.prototype.$message.config({
     top: `80px`,
     duration: 2,

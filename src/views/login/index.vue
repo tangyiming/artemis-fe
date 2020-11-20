@@ -77,9 +77,7 @@ export default {
         })
     },
     methods: {
-        ...mapActions([
-            'setLoginUser'
-        ]),
+        ...mapActions(['setLoginUser']),
         // Only show error after a field is touched.
         userIdError() {
             const { getFieldError, isFieldTouched } = this.form
@@ -95,11 +93,15 @@ export default {
             this.form.validateFields((err, values) => {
                 if (!err) {
                     login(values).then(res => {
-                        localStorage['token'] = JSON.stringify(res.data)
-                        let userid = values['userid']
-                        localStorage['userid'] = userid
-                        this.setLoginUser(userid)
-                        router.push('/')
+                        if (res.success) {
+                            localStorage['token'] = JSON.stringify(res.data)
+                            let userid = values['userid']
+                            localStorage['userid'] = userid
+                            this.setLoginUser(userid)
+                            router.push('/')
+                        } else {
+                            this.$message.warn(res.msg)
+                        }
                     })
                 }
             })
