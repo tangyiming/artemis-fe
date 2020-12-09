@@ -1,29 +1,35 @@
 <template>
-    <div class="main">
-        <div v-html="html" class="center"></div>
-    </div>
+    <a-layout>
+        <a-layout-content
+            style="margin: 17px 25px; height: calc(100vh - 160px)"
+        >
+            <div v-html="html" class="content-style"></div>
+        </a-layout-content>
+        <my-footer />
+    </a-layout>
 </template>
 <script>
+import Footer from '@/components/Footer'
 import showdown from 'showdown'
 import doc from './doc.md'
 export default {
+    components: {
+        'my-footer': Footer,
+    },
     data() {
         return {
             md: doc,
-            html: ''
+            html: '',
         }
     },
     mounted() {
         let converter = new showdown.Converter()
         let text = this.md.toString()
         this.html = converter.makeHtml(text)
-    }
+    },
 }
 </script>
 <style scoped>
-.main {
-    padding: 10px 280px;
-}
 blockquote {
     border-left: #eee solid 5px;
     padding-left: 15px;
