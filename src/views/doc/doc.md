@@ -1,6 +1,7 @@
+html 书写演示：
 
-html书写演示：
---- 
+---
+
 <center>
        <h3>
            markdown文件展示
@@ -12,6 +13,6 @@ html书写演示：
        </div>
  </center>
 
-markdown 书写演示：
----
+## markdown 书写演示：
+
 ## 🐑 二级标题

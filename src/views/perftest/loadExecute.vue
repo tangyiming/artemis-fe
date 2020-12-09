@@ -19,26 +19,15 @@
         </a-breadcrumb>
         <a-layout-content class="content-style">
             <div>
-                <a-input  v-model="testType" />
-                <a-input  v-model="testPlanName" />
-                <a-upload
-                    :before-upload="beforeUpload"
-                    :file-list="fileList"
-                    :remove="handleRemove"
-                    accept=".jmx,.jar,.csv"
-                >
+                <a-input v-model="testType" />
+                <a-input v-model="testPlanName" />
+                <a-upload :before-upload="beforeUpload" :file-list="fileList" :remove="handleRemove" accept=".jmx,.jar,.csv">
                     <a-button>
                         <a-icon type="upload" />
                         选择文件
                     </a-button>
                 </a-upload>
-                <a-button
-                    :disabled="fileList.length === 0"
-                    :loading="uploading"
-                    style="margin-top: 16px"
-                    type="primary"
-                    @click="handleUpload"
-                >
+                <a-button :disabled="fileList.length === 0" :loading="uploading" style="margin-top: 16px" type="primary" @click="handleUpload">
                     {{ uploading ? '上传中' : '确认上传' }}
                 </a-button>
             </div>
@@ -57,7 +46,7 @@ export default {
             fileList: [],
             uploading: false,
             testType: 'load',
-            testPlanName: '登录平台查询构建结果'
+            testPlanName: '登录平台查询构建结果',
         }
     },
     methods: {
@@ -78,31 +67,28 @@ export default {
             const { fileList } = this
             const formData = new FormData()
             // FormData 多文件用一个名字循环append，无法把list对象append进FormData
-            fileList.forEach(file => {
+            fileList.forEach((file) => {
                 formData.append('file', file)
             })
             //这里包装json 后端@RequestPart可以直接转换成对象
             let info = {
                 testType: this.testType,
-                testPlanName: this.testPlanName
+                testPlanName: this.testPlanName,
             }
-            formData.append(
-                'info',
-                new Blob([JSON.stringify(info)], { type: 'application/json' })
-            )
+            formData.append('info', new Blob([JSON.stringify(info)], { type: 'application/json' }))
             save(formData)
-                .then(res => {
+                .then((res) => {
                     this.fileList = []
                     this.$message.success('文件上传成功')
                 })
-                .catch(err => {
+                .catch((err) => {
                     this.$message.error('文件上传失败')
                     console.error(err)
                 })
                 .finally(() => {
                     this.uploading = false
                 })
-        }
-    }
+        },
+    },
 }
 </script>

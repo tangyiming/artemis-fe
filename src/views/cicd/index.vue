@@ -1,7 +1,7 @@
 <template>
-     <a-layout>
-        <a-layout-content style="margin: 17px 25px; height: calc(100vh - 135px)" >
-           <div class="content-style">
+    <a-layout>
+        <a-layout-content class="layout-style-with-height">
+            <div class="content-style">
                 <h3>待开发</h3>
             </div>
         </a-layout-content>
@@ -16,6 +16,6 @@ export default {
     components: {
         'my-footer': Footer,
     },
-    name: 'home'
+    name: 'home',
 }
 </script>

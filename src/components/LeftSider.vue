@@ -1,12 +1,5 @@
 <template>
-    <a-menu
-        @click="handleClick"
-        :defaultSelectedKeys="sider"
-        :openKeys.sync="openkey"
-        :forceSubMenuRender="true"
-        theme="dark"
-        mode="inline"
-    >
+    <a-menu @click="handleClick" :defaultSelectedKeys="sider" :openKeys.sync="openkey" :forceSubMenuRender="true" theme="dark" mode="inline" style="height: 100%">
         <template v-for="item in menuList">
             <a-menu-item v-if="!item.children" :key="item.key">
                 <a-icon :type="item.icon" />
@@ -24,13 +17,13 @@ import { mapState, mapActions } from 'vuex'
 export default {
     name: 'LeftSider',
     components: {
-        'sub-menu': SubMenu
+        'sub-menu': SubMenu,
     },
     data() {
         return {
             //collapsed: false,
             sider: [''],
-            openkey: ['']
+            openkey: [''],
         }
     },
     beforeMount() {
@@ -39,20 +32,20 @@ export default {
     },
     computed: {
         ...mapState({
-            activeHeader: state => state.activeHeader,
-            activeSider: state => state.activeSider,
-            openKey: state => state.openKey
-        })
+            activeHeader: (state) => state.activeHeader,
+            activeSider: (state) => state.activeSider,
+            openKey: (state) => state.openKey,
+        }),
     },
     props: {
-        menuList: { required: true, type: Array }
+        menuList: { required: true, type: Array },
     },
     methods: {
         ...mapActions(['setActiveHeader', 'setActiveSider', 'setOpenKey']),
 
         handleClick(val) {
             this.$router.push({ path: val.key })
-        }
-    }
+        },
+    },
 }
 </script>

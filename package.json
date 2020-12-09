@@ -6,17 +6,20 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,vue,json,css,scss,less,md}\" "
   },
   "dependencies": {
     "ant-design-vue": "^1.6.3",
     "axios": "^0.19.2",
     "core-js": "^2.6.11",
+    "eslint-plugin-prettier": "^3.2.0",
     "file-saver": "^2.0.2",
     "html-loader": "^0.5.5",
     "lodash": "^4.17.19",
     "markdown-loader": "^5.1.0",
     "moment": "^2.27.0",
+    "prettier": "^2.2.1",
     "showdown": "^1.9.1",
     "vue": "^2.6.11",
     "vue-router": "^3.3.4",
@@ -67,10 +70,13 @@
     ]
   },
   "prettier": {
-    "jsxBracketSameLine": true,
+    "jsxBracketSameLine": false,
     "singleQuote": true,
     "semi": false,
-    "tabWidth": 4
+    "tabWidth": 4,
+    "printWidth": 200,
+    "bracketSpacing": true,
+    "vueIndentScriptAndStyle": false
   },
   "postcss": {
     "plugins": {

@@ -23,6 +23,6 @@
 
 <script>
 export default {
-    name: 'dashBoard'
+    name: 'dashBoard',
 }
 </script>

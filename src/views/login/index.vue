@@ -1,19 +1,9 @@
 <template>
     <a-layout>
-        <a-layout-content
-            style="margin: 17px 25px; height: calc(100vh - 135px)"
-        >
+        <a-layout-content class="layout-style-with-height">
             <div class="content-style">
-                <a-form
-                    :form="form"
-                    class="login-form"
-                    layout="inline"
-                    @submit="handleSubmit"
-                >
-                    <a-form-item
-                        :help="userIdError() || ''"
-                        :validate-status="userIdError() ? 'error' : ''"
-                    >
+                <a-form :form="form" class="login-form" layout="inline" @submit="handleSubmit">
+                    <a-form-item :help="userIdError() || ''" :validate-status="userIdError() ? 'error' : ''">
                         <a-input
                             v-decorator="[
                                 'userid',
@@ -28,18 +18,11 @@
                             ]"
                             placeholder="账户"
                         >
-                            <a-icon
-                                slot="prefix"
-                                style="color: rgba(0, 0, 0, 0.25)"
-                                type="user"
-                            />
+                            <a-icon slot="prefix" style="color: rgba(0, 0, 0, 0.25)" type="user" />
                         </a-input>
                     </a-form-item>
 
-                    <a-form-item
-                        :help="passwordError() || ''"
-                        :validate-status="passwordError() ? 'error' : ''"
-                    >
+                    <a-form-item :help="passwordError() || ''" :validate-status="passwordError() ? 'error' : ''">
                         <a-input
                             v-decorator="[
                                 'password',
@@ -55,21 +38,11 @@
                             placeholder="密码"
                             type="password"
                         >
-                            <a-icon
-                                slot="prefix"
-                                style="color: rgba(0, 0, 0, 0.25)"
-                                type="lock"
-                            />
+                            <a-icon slot="prefix" style="color: rgba(0, 0, 0, 0.25)" type="lock" />
                         </a-input>
                     </a-form-item>
                     <a-form-item>
-                        <a-button
-                            :disabled="hasErrors(form.getFieldsError())"
-                            html-type="submit"
-                            type="primary"
-                        >
-                            登录
-                        </a-button>
+                        <a-button :disabled="hasErrors(form.getFieldsError())" html-type="submit" type="primary"> 登录 </a-button>
                     </a-form-item>
                 </a-form>
             </div>

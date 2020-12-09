@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {message} from "ant-design-vue";
+import { message } from 'ant-design-vue'
 
 function checkCode(response = {}) {
     if (response.status === 200 || response.data.code === 200) {
@@ -17,18 +17,18 @@ axios.defaults.baseURL = '/api/'
 // process.env.NODE_ENV === 'development' ? '/api/' : ''
 
 axios.interceptors.request.use(
-    config => {
+    (config) => {
         //使用slice去掉token两边的双引号
-        config.headers.Authorization = typeof(localStorage['token'])=="undefined"?'no auth':localStorage['token'].slice(1,-1)
+        config.headers.Authorization = typeof localStorage['token'] == 'undefined' ? 'no auth' : localStorage['token'].slice(1, -1)
         return config
     },
-    error => Promise.reject(error)
+    (error) => Promise.reject(error)
 )
 axios.interceptors.response.use(
-    response => checkCode(response),
-    err => {
-        if (err.response.status === 401&&err.response.data.msg==="非授权访问") {
-            message.warning({ content: '非授权访问，请先登录！'})
+    (response) => checkCode(response),
+    (err) => {
+        if (err.response.status === 401 && err.response.data.msg === '非授权访问') {
+            message.warning({ content: '非授权访问，请先登录！' })
         }
         return Promise.reject(err)
     }
@@ -39,56 +39,52 @@ export default {
         return axios({
             method: 'post',
             url,
-            data: data
+            data: data,
         })
     },
     postFormData(url, data) {
         let ret = ''
         for (let it in data) {
-            ret +=
-                encodeURIComponent(it) +
-                '=' +
-                encodeURIComponent(data[it]) +
-                '&'
+            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
         }
         return axios({
             method: 'post',
             headers: {
-                'Content-type': 'application/x-www-form-urlencoded'
+                'Content-type': 'application/x-www-form-urlencoded',
             },
             url,
-            data: ret
+            data: ret,
         })
     },
     postMultipartFormData(url, data) {
         return axios({
             method: 'post',
             headers: {
-                'Content-type': 'multipart/form-data'
+                'Content-type': 'multipart/form-data',
             },
             url,
-            data: data
+            data: data,
         })
     },
     put(url, data) {
         return axios({
             method: 'put',
             url,
-            data: data
+            data: data,
         })
     },
     get(url, params) {
         return axios({
             method: 'get',
             url,
-            params
+            params,
         })
     },
     delete(url, params) {
         return axios({
             method: 'delete',
             url,
-            params
+            params,
         })
-    }
+    },
 }

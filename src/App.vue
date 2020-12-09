@@ -11,14 +11,7 @@
                             src="@/assets/images/logo.png"
                         />
                     </a> -->
-                    <a-menu
-                        theme="light"
-                        mode="horizontal"
-                        :defaultSelectedKeys="defaultSelectedKeys"
-                        class="top-menu"
-                        @click="handleMenuClick"
-                        :key="headerKey"
-                    >
+                    <a-menu theme="light" mode="horizontal" :defaultSelectedKeys="defaultSelectedKeys" class="top-menu" @click="handleMenuClick" :key="headerKey">
                         <!-- 默认key值一定要与url路径xxx/key/xxxx相同 -->
                         <a-menu-item key="home">首页</a-menu-item>
                         <a-menu-item key="cicd">持续交付</a-menu-item>
@@ -29,11 +22,7 @@
                     </a-menu>
                     <span class="top-right">
                         <!--                        <a-icon type="bell" class="top-bell" />-->
-                        <a-icon
-                            type="user"
-                            class="top-user"
-                            v-if="!loginUser"
-                        />
+                        <a-icon type="user" class="top-user" v-if="!loginUser" />
                         {{ loginUser }}
                         <span class="top-login">
                             <!-- todo 1:接入用户中心 -->
@@ -45,9 +34,7 @@
                                 </a>
                                 <a-menu slot="overlay">
                                     <a-menu-item key="0">
-                                        <a href="/login" v-if="!loginUser"
-                                            >登陆</a
-                                        >
+                                        <a href="/login" v-if="!loginUser">登陆</a>
                                         <a @click="logOut" v-else>登出</a>
                                     </a-menu-item>
                                     <a-menu-item key="1">
@@ -79,39 +66,33 @@ export default {
             activeHeader: '',
             activeSider: '',
             openKey: '',
-            headerKey: 1
+            headerKey: 1,
         }
     },
 
     computed: {
         ...mapState({
-            menuList: state => state.menuList,
-            siderKey: state => state.siderKey,
-            loginUser: state => state.loginUser
-        })
+            menuList: (state) => state.menuList,
+            siderKey: (state) => state.siderKey,
+            loginUser: (state) => state.loginUser,
+        }),
     },
 
     watch: {
-        menuList: function(newval) {
+        menuList: function (newval) {
             this.changeOpenkey(newval)
         },
-        $route: function() {
+        $route: function () {
             this.initMenu()
             this.headerKey += 1
-        }
+        },
     },
     beforeMount() {
         this.initMenu()
     },
 
     methods: {
-        ...mapActions([
-            'setActiveHeader',
-            'setActiveSider',
-            'setOpenKey',
-            'setSiderKey',
-            'setLoginUser'
-        ]),
+        ...mapActions(['setActiveHeader', 'setActiveSider', 'setOpenKey', 'setSiderKey', 'setLoginUser']),
 
         logOut() {
             localStorage.removeItem('token')
@@ -119,16 +100,15 @@ export default {
             this.setLoginUser('')
         },
 
-        changeOpenkey: function(val) {
+        changeOpenkey: function (val) {
             let path
             this.openKey = ''
             path = window.location.pathname.substring(1)
-            val.forEach(item => {
+            val.forEach((item) => {
                 !item.hasOwnProperty('children')
                     ? null
-                    : item.children.forEach(it => {
-                          if (it.path.substring(1) === path)
-                              this.openKey = item.key
+                    : item.children.forEach((it) => {
+                          if (it.path.substring(1) === path) this.openKey = item.key
                       })
             })
             this.setOpenKey(this.openKey)
@@ -182,8 +162,8 @@ export default {
                 default:
                     this.$router.push({ path: '/404' })
             }
-        }
-    }
+        },
+    },
 }
 </script>
 
@@ -211,12 +191,5 @@ export default {
             font-size: 14px;
         }
     }
-    
-}
-
-.header {
-    background: #FFF;
-    width: 100%;
-    font-family: Times New Roman,Microsoft YaHei,Arial,-apple-system,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Hiragino Sans GB;
 }
 </style>

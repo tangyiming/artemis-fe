@@ -23,6 +23,6 @@
 
 <script>
 export default {
-    name: 'h5Results'
+    name: 'h5Results',
 }
 </script>

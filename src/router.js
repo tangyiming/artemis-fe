@@ -6,7 +6,7 @@ Vue.use(Router)
 // 避免重复同导航跳转报错
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
-    return originalPush.call(this, location).catch(err => err)
+    return originalPush.call(this, location).catch((err) => err)
 }
 
 export default new Router({
@@ -15,7 +15,7 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: Home
+            component: Home,
         },
         {
             path: '/404',
@@ -23,8 +23,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () =>
-                import(/* webpackChunkName: "customUpload" */ './views/404')
+            component: () => import(/* webpackChunkName: "customUpload" */ './views/404'),
         },
         {
             path: '/cicd',
@@ -32,8 +31,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () =>
-                import(/* webpackChunkName: "customUpload" */ './views/cicd')
+            component: () => import(/* webpackChunkName: "customUpload" */ './views/cicd'),
         },
         {
             path: '/apitest',
@@ -41,8 +39,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () =>
-                import(/* webpackChunkName: "customUpload" */ './views/apitest')
+            component: () => import(/* webpackChunkName: "customUpload" */ './views/apitest'),
         },
         {
             path: '/uitest',
@@ -50,8 +47,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () =>
-                import(/* webpackChunkName: "customUpload" */ './views/uitest')
+            component: () => import(/* webpackChunkName: "customUpload" */ './views/uitest'),
         },
         {
             path: '/login',
@@ -59,8 +55,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () =>
-                import(/* webpackChunkName: "customUpload" */ './views/login')
+            component: () => import(/* webpackChunkName: "customUpload" */ './views/login'),
         },
         {
             path: '/doc',
@@ -68,8 +63,7 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () =>
-                import(/* webpackChunkName: "customUpload" */ './views/doc')
+            component: () => import(/* webpackChunkName: "customUpload" */ './views/doc'),
         },
         {
             path: '/perftest',
@@ -79,29 +73,29 @@ export default new Router({
                 {
                     path: 'dashboard',
                     // eslint-disable-next-line prettier/prettier
-                    component: require( './views/perftest/dashBoard').default
+                    component: require('./views/perftest/dashBoard').default,
                 },
                 {
                     path: 'h5execute',
                     // eslint-disable-next-line prettier/prettier
-                    component: require( './views/perftest/h5Execute').default
+                    component: require('./views/perftest/h5Execute').default,
                 },
                 {
                     path: 'h5results',
                     // eslint-disable-next-line prettier/prettier
-                    component: require( './views/perftest/h5Results').default
+                    component: require('./views/perftest/h5Results').default,
                 },
                 {
                     path: 'loadexecute',
                     // eslint-disable-next-line prettier/prettier
-                    component: require( './views/perftest/loadExecute').default
+                    component: require('./views/perftest/loadExecute').default,
                 },
                 {
                     path: 'loadresults',
                     // eslint-disable-next-line prettier/prettier
-                    component: require( './views/perftest/loadResults').default
-                }
-            ]
+                    component: require('./views/perftest/loadResults').default,
+                },
+            ],
         },
         {
             path: '/toolset',
@@ -111,19 +105,19 @@ export default new Router({
                 {
                     path: 'testassertmanage',
                     // eslint-disable-next-line prettier/prettier
-                    component: require( './views/toolset/testAssertManage').default
+                    component: require('./views/toolset/testAssertManage').default,
                 },
                 {
                     path: 'mock',
                     // eslint-disable-next-line prettier/prettier
-                    component: require( './views/toolset/mock').default
-                }
-            ]
+                    component: require('./views/toolset/mock').default,
+                },
+            ],
         },
         {
             path: '/*',
             name: '404',
-            component: () => import('./views/404')
-        }
-    ]
+            component: () => import('./views/404'),
+        },
+    ],
 })

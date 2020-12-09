@@ -1,8 +1,6 @@
 <template>
     <a-layout>
-        <a-layout-content
-            style="margin: 17px 25px; height: calc(100vh - 135px)"
-        >
+        <a-layout-content class="layout-style-with-height">
             <div v-html="html" class="content-style"></div>
         </a-layout-content>
         <my-footer />
@@ -146,8 +144,7 @@ h1 {
     background-color: #333;
     color: rgb(144, 144, 144);
     width: 300px;
-    font-family: 'Open Sans', 'Myriad Pro', 'Lucida Grande',
-        'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+    font-family: 'Open Sans', 'Myriad Pro', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
 }
 
 .lateral-menu label {

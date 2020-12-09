@@ -17,7 +17,7 @@ import Footer from '@/components/Footer'
 
 export default {
     components: {
-        'my-footer': Footer
+        'my-footer': Footer,
     },
     data() {
         return {
@@ -28,7 +28,7 @@ export default {
                     key: 'dashboard',
                     path: '/perftest/dashboard',
                     title: 'Dashboard',
-                    icon: 'bar-chart'
+                    icon: 'bar-chart',
                 },
                 {
                     key: 'h5',
@@ -39,15 +39,15 @@ export default {
                             key: 'h5execute',
                             path: '/perftest/h5execute',
                             title: '测试执行',
-                            icon: 'thunderbolt'
+                            icon: 'thunderbolt',
                         },
                         {
                             key: 'h5results',
                             path: '/perftest/h5results',
                             title: '测试列表',
-                            icon: 'ordered-list'
-                        }
-                    ]
+                            icon: 'ordered-list',
+                        },
+                    ],
                 },
                 {
                     key: 'load',
@@ -58,37 +58,37 @@ export default {
                             key: 'loadexecute',
                             path: '/perftest/loadexecute',
                             title: '测试执行',
-                            icon: 'thunderbolt'
+                            icon: 'thunderbolt',
                         },
                         {
                             key: 'loadresults',
                             path: '/perftest/loadresults',
                             title: '测试列表',
-                            icon: 'ordered-list'
-                        }
-                    ]
-                }
-            ]
+                            icon: 'ordered-list',
+                        },
+                    ],
+                },
+            ],
         }
     },
     computed: {
         ...mapState({
-            openKey: state => state.openKey,
-            activeSider: state => state.activeSider,
-            siderKey: state => state.siderKey
-        })
+            openKey: (state) => state.openKey,
+            activeSider: (state) => state.activeSider,
+            siderKey: (state) => state.siderKey,
+        }),
     },
     watch: {
-        openKey: function() {
+        openKey: function () {
             this.setSiderKey(this.siderKey + 1)
-        }
+        },
     },
     beforeMount() {
         this.setMenuList(this.menuList)
     },
     methods: {
-        ...mapActions(['setMenuList', 'setSiderKey'])
-    }
+        ...mapActions(['setMenuList', 'setSiderKey']),
+    },
 }
 </script>
 <style lang="less" scoped>

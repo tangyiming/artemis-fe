@@ -16,5 +16,5 @@ export default {
     },
     setLoginUser(state, key) {
         state.loginUser = key
-    }
+    },
 }

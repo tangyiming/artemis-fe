@@ -29,14 +29,10 @@
                                 :defaultActiveFirstOption="false"
                                 :showArrow="false"
                                 :filterOption="false"
-                                @search="val => handleSearch('department', val)"
-                                @change="val => handleChange('department', val)"
+                                @search="(val) => handleSearch('department', val)"
+                                @change="(val) => handleChange('department', val)"
                             >
-                                <a-select-option
-                                    v-for="d in departmentList"
-                                    :key="d"
-                                    >{{ d }}</a-select-option
-                                >
+                                <a-select-option v-for="d in departmentList" :key="d">{{ d }}</a-select-option>
                             </a-select>
                         </a-form-item>
                     </a-col>
@@ -49,18 +45,10 @@
                                 :defaultActiveFirstOption="false"
                                 :showArrow="false"
                                 :filterOption="false"
-                                @search="
-                                    val => handleSearch('machineOwner', val)
-                                "
-                                @change="
-                                    val => handleChange('machineOwner', val)
-                                "
+                                @search="(val) => handleSearch('machineOwner', val)"
+                                @change="(val) => handleChange('machineOwner', val)"
                             >
-                                <a-select-option
-                                    v-for="d in machineOwnerList"
-                                    :key="d"
-                                    >{{ d }}</a-select-option
-                                >
+                                <a-select-option v-for="d in machineOwnerList" :key="d">{{ d }}</a-select-option>
                             </a-select>
                         </a-form-item>
                     </a-col>
@@ -73,14 +61,10 @@
                                 :defaultActiveFirstOption="false"
                                 :showArrow="false"
                                 :filterOption="false"
-                                @search="val => handleSearch('holderName', val)"
-                                @change="val => handleChange('holderName', val)"
+                                @search="(val) => handleSearch('holderName', val)"
+                                @change="(val) => handleChange('holderName', val)"
                             >
-                                <a-select-option
-                                    v-for="d in holderNameList"
-                                    :key="d"
-                                    >{{ d }}</a-select-option
-                                >
+                                <a-select-option v-for="d in holderNameList" :key="d">{{ d }}</a-select-option>
                             </a-select>
                         </a-form-item>
                     </a-col>
@@ -93,18 +77,10 @@
                                 :defaultActiveFirstOption="false"
                                 :showArrow="false"
                                 :filterOption="false"
-                                @search="
-                                    val => handleSearch('equipmentType', val)
-                                "
-                                @change="
-                                    val => handleChange('equipmentType', val)
-                                "
+                                @search="(val) => handleSearch('equipmentType', val)"
+                                @change="(val) => handleChange('equipmentType', val)"
                             >
-                                <a-select-option
-                                    v-for="d in equipmentTypeList"
-                                    :key="d"
-                                    >{{ d }}</a-select-option
-                                >
+                                <a-select-option v-for="d in equipmentTypeList" :key="d">{{ d }}</a-select-option>
                             </a-select>
                         </a-form-item>
                     </a-col>
@@ -112,42 +88,18 @@
                 <a-row :gutter="24">
                     <a-col :span="6">
                         <a-form-item>
-                            <a-button type="primary" @click="handleQuery"
-                                >查询</a-button
-                            >
-                            <a-button
-                                class="inline-second-item"
-                                @click="handleReset"
-                                >重置</a-button
-                            >
+                            <a-button type="primary" @click="handleQuery">查询</a-button>
+                            <a-button class="inline-second-item" @click="handleReset">重置</a-button>
                         </a-form-item>
                     </a-col>
                 </a-row>
             </a-form>
             <div class="table">
-                <a-button type="primary" icon="plus" @click="handleAddAsset"
-                    >新增资产</a-button
-                >
-                <a-table
-                    :columns="columns"
-                    :dataSource="tabledata"
-                    bordered
-                    :pagination="false"
-                    style="margin-top:6px"
-                >
+                <a-button type="primary" icon="plus" @click="handleAddAsset">新增资产</a-button>
+                <a-table :columns="columns" :dataSource="tabledata" bordered :pagination="false" style="margin-top: 6px">
                     <span slot="action" slot-scope="record" class="options">
-                        <a-button
-                            type="primary"
-                            size="small"
-                            @click="handleUpdateAsset(record)"
-                            >编辑</a-button
-                        >&nbsp;
-                        <a-popconfirm
-                            title="确定要删除这条数据吗"
-                            @confirm="() => confirm(record)"
-                            okText="确认"
-                            cancelText="算了"
-                        >
+                        <a-button type="primary" size="small" @click="handleUpdateAsset(record)">编辑</a-button>&nbsp;
+                        <a-popconfirm title="确定要删除这条数据吗" @confirm="() => confirm(record)" okText="确认" cancelText="算了">
                             <a-button type="danger" size="small">删除</a-button>
                         </a-popconfirm>
                     </span>
@@ -156,7 +108,7 @@
                     class="pagination-style"
                     v-model="current"
                     size="small"
-                    :showTotal="total => `全部 ${total} 条`"
+                    :showTotal="(total) => `全部 ${total} 条`"
                     :defaultPageSize="5"
                     :total="total"
                     :pageSizeOptions="pageSizeOptions"
@@ -175,7 +127,7 @@
             :wrapStyle="{
                 height: 'calc(100% - 108px)',
                 overflow: 'auto',
-                paddingBottom: '108px'
+                paddingBottom: '108px',
             }"
         >
             <a-form :form="form" layout="vertical" hideRequiredMark>
@@ -190,10 +142,10 @@
                                         rules: [
                                             {
                                                 required: true,
-                                                message: '请输入资产编号'
-                                            }
-                                        ]
-                                    }
+                                                message: '请输入资产编号',
+                                            },
+                                        ],
+                                    },
                                 ]"
                                 placeholder="请输入资产编号"
                         /></a-form-item>
@@ -207,10 +159,10 @@
                                         rules: [
                                             {
                                                 required: true,
-                                                message: '请输入所属部门'
-                                            }
-                                        ]
-                                    }
+                                                message: '请输入所属部门',
+                                            },
+                                        ],
+                                    },
                                 ]"
                                 placeholder="请输入所属部门"
                         /></a-form-item>
@@ -226,10 +178,10 @@
                                         rules: [
                                             {
                                                 required: true,
-                                                message: '请输入保管人'
-                                            }
-                                        ]
-                                    }
+                                                message: '请输入保管人',
+                                            },
+                                        ],
+                                    },
                                 ]"
                                 placeholder="请输入保管人"
                             />
@@ -244,10 +196,10 @@
                                         rules: [
                                             {
                                                 required: true,
-                                                message: '请输入设备名称'
-                                            }
-                                        ]
-                                    }
+                                                message: '请输入设备名称',
+                                            },
+                                        ],
+                                    },
                                 ]"
                                 placeholder="请输入设备名称"
                             />
@@ -264,10 +216,10 @@
                                         rules: [
                                             {
                                                 required: true,
-                                                message: '请输入设备类型'
-                                            }
-                                        ]
-                                    }
+                                                message: '请输入设备类型',
+                                            },
+                                        ],
+                                    },
                                 ]"
                                 placeholder="请输入设备类型"
                             />
@@ -282,10 +234,10 @@
                                         rules: [
                                             {
                                                 required: true,
-                                                message: '请输入设备型号'
-                                            }
-                                        ]
-                                    }
+                                                message: '请输入设备型号',
+                                            },
+                                        ],
+                                    },
                                 ]"
                                 placeholder="请输入设备型号"
                             />
@@ -302,10 +254,10 @@
                                         rules: [
                                             {
                                                 required: true,
-                                                message: '请输入设备系统'
-                                            }
-                                        ]
-                                    }
+                                                message: '请输入设备系统',
+                                            },
+                                        ],
+                                    },
                                 ]"
                                 placeholder="请输入设备系统"
                             />
@@ -320,10 +272,10 @@
                                         rules: [
                                             {
                                                 required: true,
-                                                message: '请输入持有人'
-                                            }
-                                        ]
-                                    }
+                                                message: '请输入持有人',
+                                            },
+                                        ],
+                                    },
                                 ]"
                                 placeholder="请输入持有人"
                             />
@@ -340,70 +292,58 @@
                     borderTop: '1px solid #e9e9e9',
                     padding: '10px 16px',
                     background: '#fff',
-                    textAlign: 'right'
+                    textAlign: 'right',
                 }"
             >
-                <a-button
-                    :style="{ marginRight: '8px' }"
-                    @click="handelDrawerCancel"
-                    >取消</a-button
-                >
-                <a-button @click="handelDrawerSubmit" type="primary"
-                    >提交</a-button
-                >
+                <a-button :style="{ marginRight: '8px' }" @click="handelDrawerCancel">取消</a-button>
+                <a-button @click="handelDrawerSubmit" type="primary">提交</a-button>
             </div>
         </a-drawer>
     </div>
 </template>
 <script>
-import {
-    addAsset,
-    getAssetInfo,
-    deleteAsset,
-    updateAsset,
-    queryAsset
-} from '@/requests/toolset'
+import { addAsset, getAssetInfo, deleteAsset, updateAsset, queryAsset } from '@/requests/toolset'
 import _ from 'lodash'
 const columns = [
     {
         title: '资产编号',
-        dataIndex: 'assetNum'
+        dataIndex: 'assetNum',
     },
     {
         title: '所属部门',
-        dataIndex: 'department'
+        dataIndex: 'department',
     },
     {
         title: '保管人',
-        dataIndex: 'machineOwner'
+        dataIndex: 'machineOwner',
     },
 
     {
         title: '设备名称',
-        dataIndex: 'productName'
+        dataIndex: 'productName',
     },
     {
         title: '设备类型',
-        dataIndex: 'equipmentType'
+        dataIndex: 'equipmentType',
     },
     {
         title: '设备型号',
-        dataIndex: 'machineModel'
+        dataIndex: 'machineModel',
     },
     {
         title: '设备系统',
-        dataIndex: 'system'
+        dataIndex: 'system',
     },
     {
         title: '持有人',
-        dataIndex: 'holderName'
+        dataIndex: 'holderName',
     },
     {
         title: '操作',
         fixed: 'right',
         width: 100,
-        scopedSlots: { customRender: 'action' }
-    }
+        scopedSlots: { customRender: 'action' },
+    },
 ]
 let _this = {}
 export default {
@@ -426,12 +366,12 @@ export default {
             form: this.$form.createForm(this),
             visible: false,
             addOrUpdateFlag: '',
-            assetId: 0
+            assetId: 0,
         }
     },
-    mounted: function() {
+    mounted: function () {
         let p = { pageNum: 1, pageSize: 5 }
-        getAssetInfo(p).then(res => {
+        getAssetInfo(p).then((res) => {
             this.tabledata = res.data.data
             this.total = res.data.total
         })
@@ -442,7 +382,7 @@ export default {
     methods: {
         handleSearch: _.debounce((key, val) => {
             let p = { [key]: val }
-            queryAsset(p).then(res => {
+            queryAsset(p).then((res) => {
                 switch (Object.keys(p)[0]) {
                     case 'department':
                         _this.departmentList = res.data
@@ -482,9 +422,9 @@ export default {
                 department: this.department,
                 machineOwner: this.machineOwner,
                 holderName: this.holderName,
-                equipmentType: this.equipmentType
+                equipmentType: this.equipmentType,
             }
-            getAssetInfo(p).then(res => {
+            getAssetInfo(p).then((res) => {
                 this.tabledata = res.data.data
                 this.total = res.data.total
             })
@@ -510,7 +450,7 @@ export default {
             this.form.validateFields((err, values) => {
                 if (!err) {
                     if (this.addOrUpdateFlag === 'add') {
-                        addAsset(values).then(res => {
+                        addAsset(values).then((res) => {
                             if (res.code === '804') {
                                 this.$message.warning(res.msg)
                             } else {
@@ -519,31 +459,29 @@ export default {
                                 this.current = 1
                                 getAssetInfo({
                                     pageNum: parseInt(this.current),
-                                    pageSize: parseInt(this.pageSize)
-                                }).then(res => {
+                                    pageSize: parseInt(this.pageSize),
+                                }).then((res) => {
                                     this.tabledata = res.data.data
                                     this.total = res.data.total
                                 })
                             }
                         })
                     } else {
-                        updateAsset({ ...values, id: this.assetId }).then(
-                            res => {
-                                if (res.code === '0') {
-                                    this.visible = false
-                                    this.form.resetFields()
-                                    getAssetInfo({
-                                        pageNum: parseInt(this.current),
-                                        pageSize: parseInt(this.pageSize)
-                                    }).then(res => {
-                                        this.tabledata = res.data.data
-                                        this.total = res.data.total
-                                    })
-                                } else {
-                                    this.$message.warning(res.msg)
-                                }
+                        updateAsset({ ...values, id: this.assetId }).then((res) => {
+                            if (res.code === '0') {
+                                this.visible = false
+                                this.form.resetFields()
+                                getAssetInfo({
+                                    pageNum: parseInt(this.current),
+                                    pageSize: parseInt(this.pageSize),
+                                }).then((res) => {
+                                    this.tabledata = res.data.data
+                                    this.total = res.data.total
+                                })
+                            } else {
+                                this.$message.warning(res.msg)
                             }
-                        )
+                        })
                     }
                 }
             })
@@ -555,7 +493,7 @@ export default {
             this.current = current
             this.pageSize = size
             let p = { pageNum: current, pageSize: size }
-            getAssetInfo(p).then(res => {
+            getAssetInfo(p).then((res) => {
                 this.tabledata = res.data.data
                 this.total = res.data.total
             })
@@ -564,7 +502,7 @@ export default {
             this.current = page
             this.pageSize = pageSize
             let p = { pageNum: parseInt(page), pageSize: parseInt(pageSize) }
-            getAssetInfo(p).then(res => {
+            getAssetInfo(p).then((res) => {
                 this.tabledata = res.data.data
                 this.total = res.data.total
             })
@@ -573,9 +511,9 @@ export default {
             let p = {
                 pageNum: 1,
                 pageSize: 1,
-                id: record.id
+                id: record.id,
             }
-            getAssetInfo(p).then(res => {
+            getAssetInfo(p).then((res) => {
                 let data = res.data.data[0]
                 //setTimeout修复antd bug：You cannot set a form field before rendering a field associated with the value.
                 setTimeout(() => {
@@ -587,7 +525,7 @@ export default {
                         equipmentType: data.equipmentType,
                         machineModel: data.machineModel,
                         system: data.system,
-                        holderName: data.holderName
+                        holderName: data.holderName,
                     })
                 }, 0)
                 this.showDrawer()
@@ -600,15 +538,15 @@ export default {
             deleteAsset(val.id).then(() => {
                 let p = {
                     pageNum: parseInt(this.current),
-                    pageSize: parseInt(this.pageSize)
+                    pageSize: parseInt(this.pageSize),
                 }
-                getAssetInfo(p).then(res => {
+                getAssetInfo(p).then((res) => {
                     this.tabledata = res.data.data
                     this.total = res.data.total
                 })
             })
-        }
-    }
+        },
+    },
 }
 </script>
 <style lang="less" scoped>

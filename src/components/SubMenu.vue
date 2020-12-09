@@ -15,6 +15,6 @@
 </template>
 <script>
 export default {
-    props: ['menuInfo']
+    props: ['menuInfo'],
 }
 </script>

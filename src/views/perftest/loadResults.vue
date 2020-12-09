@@ -23,6 +23,6 @@
 
 <script>
 export default {
-    name: 'loadResults'
+    name: 'loadResults',
 }
 </script>

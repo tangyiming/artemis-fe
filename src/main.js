@@ -19,11 +19,11 @@ Vue.component('left-sider', LeftSider)
 Vue.prototype.$message.config({
     top: `80px`,
     duration: 2,
-    maxCount: 3
+    maxCount: 3,
 })
 
 new Vue({
     router,
     store,
-    render: h => h(App)
+    render: (h) => h(App),
 }).$mount('#app')

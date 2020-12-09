@@ -17,7 +17,7 @@ import Footer from '@/components/Footer'
 
 export default {
     components: {
-        'my-footer': Footer
+        'my-footer': Footer,
     },
     data() {
         return {
@@ -27,34 +27,34 @@ export default {
                     key: 'mock',
                     path: '/toolset/mock',
                     title: 'Mock',
-                    icon: 'medium'
+                    icon: 'medium',
                 },
                 {
                     key: 'testassertmanage',
                     path: '/toolset/testassertmanage',
                     title: '测试资产',
-                    icon: 'reconciliation'
-                }
-            ]
+                    icon: 'reconciliation',
+                },
+            ],
         }
     },
     computed: {
         ...mapState({
-            openKey: state => state.openKey,
-            activeSider: state => state.activeSider,
-            siderKey: state => state.siderKey
-        })
+            openKey: (state) => state.openKey,
+            activeSider: (state) => state.activeSider,
+            siderKey: (state) => state.siderKey,
+        }),
     },
     watch: {
-        openKey: function() {
+        openKey: function () {
             this.setSiderKey(this.siderKey + 1)
-        }
+        },
     },
     beforeMount() {
         this.setMenuList(this.menuList)
     },
     methods: {
-        ...mapActions(['setMenuList', 'setSiderKey'])
-    }
+        ...mapActions(['setMenuList', 'setSiderKey']),
+    },
 }
 </script>

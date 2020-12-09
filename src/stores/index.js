@@ -15,7 +15,7 @@ const state = {
     openKey: '',
     //用来进行重新渲染sider
     siderKey: 0,
-    loginUser: ''
+    loginUser: '',
 }
 
 const debug = process.env.NODE_ENV !== 'production'
@@ -26,10 +26,10 @@ export default new Vuex.Store({
     mutations,
     actions,
     modules: {
-        perftest
+        perftest,
     },
     //在严格模式下，无论何时发生了状态变更且不是由 mutation 函数引起的，将会抛出错误
     strict: debug,
     //如果正在使用 vue-devtools，你可能不需要此插件
-    plugins: debug ? [createLogger()] : []
+    plugins: debug ? [createLogger()] : [],
 })
