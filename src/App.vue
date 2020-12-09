@@ -3,15 +3,16 @@
         <div>
             <a-layout id="components-layout-demo-top-side">
                 <a-layout-header class="header">
-                    <a href="/">
+                    <div class="logo">Artemis</div>
+                    <!-- <a href="/">
                         <img
                             alt="site logo"
                             class="logo"
                             src="@/assets/images/logo.png"
                         />
-                    </a>
+                    </a> -->
                     <a-menu
-                        theme="dark"
+                        theme="light"
                         mode="horizontal"
                         :defaultSelectedKeys="defaultSelectedKeys"
                         class="top-menu"
@@ -189,40 +190,33 @@ export default {
 <style lang="less" scoped>
 #components-layout-demo-top-side {
     .logo {
-        width: 40px;
-        margin-top: 13px;
-        margin-left: 25px;
+        line-height: 50px;
+        margin: auto;
         float: left;
+        font-size: 25px;
     }
     .top-menu {
-        line-height: 63px;
+        line-height: 50px;
         position: absolute;
-        left: 250px;
     }
     .top-right {
+        line-height: 50px;
         position: absolute;
         right: 30px;
-        color: @icon-color;
+        .top-user {
+            font-size: 20px;
+            vertical-align: middle;
+        }
+        .top-login {
+            font-size: 14px;
+        }
     }
-    .top-bell {
-        font-size: 20px;
-        color: @icon-color;
-        vertical-align: middle;
-    }
-    .top-user {
-        font-size: 20px;
-        color: @icon-color;
-        vertical-align: middle;
-        margin-left: 10px;
-    }
-    .top-login {
-        font-size: 14px;
-        color: @icon-color;
-        margin-left: 10px;
-    }
+    
 }
 
 .header {
+    background: #FFF;
     width: 100%;
+    font-family: Times New Roman,Microsoft YaHei,Arial,-apple-system,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Hiragino Sans GB;
 }
 </style>

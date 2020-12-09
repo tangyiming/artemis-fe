@@ -1,7 +1,7 @@
 <template>
     <a-layout>
         <a-layout-content
-            style="margin: 17px 25px; height: calc(100vh - 160px)"
+            style="margin: 17px 25px; height: calc(100vh - 135px)"
         >
             <div v-html="html" class="content-style"></div>
         </a-layout-content>

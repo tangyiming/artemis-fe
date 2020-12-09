@@ -1,7 +1,7 @@
 <template>
     <a-layout>
         <a-layout-content
-            style="margin: 17px 25px; height: calc(100vh - 150px)"
+            style="margin: 17px 25px; height: calc(100vh - 135px)"
         >
             <div class="content-style">
                 <a-form
