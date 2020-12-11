@@ -52,7 +52,8 @@
     ],
     "rules": {
       "no-unused-vars": 0,
-      "no-console": 0
+      "no-console": 0,
+      "no-extra-boolean-cast":0
     },
     "parserOptions": {
       "parser": "babel-eslint"
@@ -76,7 +77,8 @@
     "tabWidth": 4,
     "printWidth": 200,
     "bracketSpacing": true,
-    "vueIndentScriptAndStyle": false
+    "vueIndentScriptAndStyle": false,
+    "arrowParens":"avoid"
   },
   "postcss": {
     "plugins": {

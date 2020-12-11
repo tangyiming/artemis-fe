@@ -84,7 +84,7 @@ export default {
         return axios({
             method: 'delete',
             url,
-            params,
+            data: params,
         })
     },
 }
