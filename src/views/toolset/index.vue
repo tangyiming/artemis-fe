@@ -40,9 +40,9 @@ export default {
     },
     computed: {
         ...mapState({
-            openKey: (state) => state.openKey,
-            activeSider: (state) => state.activeSider,
-            siderKey: (state) => state.siderKey,
+            openKey: state => state.openKey,
+            activeSider: state => state.activeSider,
+            siderKey: state => state.siderKey,
         }),
     },
     watch: {

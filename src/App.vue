@@ -72,9 +72,9 @@ export default {
 
     computed: {
         ...mapState({
-            menuList: (state) => state.menuList,
-            siderKey: (state) => state.siderKey,
-            loginUser: (state) => state.loginUser,
+            menuList: state => state.menuList,
+            siderKey: state => state.siderKey,
+            loginUser: state => state.loginUser,
         }),
     },
 
@@ -101,35 +101,60 @@ export default {
         },
 
         changeOpenkey: function (val) {
+            let routerMode = this.$router.mode
             let path
-            this.openKey = ''
-            path = window.location.pathname.substring(1)
-            val.forEach((item) => {
-                !item.hasOwnProperty('children')
-                    ? null
-                    : item.children.forEach((it) => {
-                          if (it.path.substring(1) === path) this.openKey = item.key
-                      })
-            })
+            if (routerMode === 'history') {
+                this.openKey = ''
+                path = window.location.pathname.substring(1)
+                val.forEach(item => {
+                    !item.hasOwnProperty('children')
+                        ? null
+                        : item.children.forEach(it => {
+                              if (it.path.substring(1) === path) this.openKey = item.key
+                          })
+                })
+            } else {
+                this.openKey = ''
+                path = window.location.hash.substring(1)
+                val.forEach(item => {
+                    !item.hasOwnProperty('children')
+                        ? null
+                        : item.children.forEach(it => {
+                              if (it.path.substring(1) === path) this.openKey = item.key
+                          })
+                })
+            }
             this.setOpenKey(this.openKey)
         },
 
         //根据路由设置选中头部菜单,侧边菜单
         initMenu() {
+            let routerMode = this.$router.mode
             let paths
-            if (window.location.pathname !== '/') {
-                paths = window.location.pathname.substring(1).split('/')
-                this.defaultSelectedKeys[0] = paths[0]
-                this.activeHeader = paths[0]
-                this.activeSider = paths[1]
+            if (routerMode === 'history') {
+                if (window.location.pathname !== '/') {
+                    paths = window.location.pathname.substring(1).split('/')
+                    this.defaultSelectedKeys[0] = paths[0]
+                    this.activeHeader = paths[0]
+                    this.activeSider = paths[1]
+                } else {
+                    this.defaultSelectedKeys[0] = 'home'
+                }
             } else {
-                this.defaultSelectedKeys[0] = 'home'
+                if (window.location.hash !== '#/') {
+                    paths = window.location.hash.substring(1).split('/')
+                    console.log((this.activeSider = paths[2]))
+                    this.defaultSelectedKeys[0] = paths[1]
+                    this.activeHeader = paths[1]
+                    this.activeSider = paths[2]
+                } else {
+                    this.defaultSelectedKeys[0] = 'home'
+                }
             }
             this.setActiveHeader(this.activeHeader)
             this.setActiveSider(this.activeSider)
             this.changeOpenkey(this.menuList)
             this.setSiderKey(this.siderKey + 1)
-            this.setLoginUser(localStorage['userid'])
         },
 
         handleMenuClick(val) {

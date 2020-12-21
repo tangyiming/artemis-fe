@@ -67,7 +67,7 @@ export default {
             const { fileList } = this
             const formData = new FormData()
             // FormData 多文件用一个名字循环append，无法把list对象append进FormData
-            fileList.forEach((file) => {
+            fileList.forEach(file => {
                 formData.append('file', file)
             })
             //这里包装json 后端@RequestPart可以直接转换成对象
@@ -77,11 +77,11 @@ export default {
             }
             formData.append('info', new Blob([JSON.stringify(info)], { type: 'application/json' }))
             save(formData)
-                .then((res) => {
+                .then(res => {
                     this.fileList = []
                     this.$message.success('文件上传成功')
                 })
-                .catch((err) => {
+                .catch(err => {
                     this.$message.error('文件上传失败')
                     console.error(err)
                 })

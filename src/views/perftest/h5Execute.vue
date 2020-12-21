@@ -51,7 +51,7 @@ export default {
         execute() {
             let url = this.prefixValue + this.url
             let p = { jobName: 'sitespeed-test', params: { url: url } }
-            build(p).then((res) => {
+            build(p).then(res => {
                 res.succ === true ? (this.status = '测试触发成功') : (this.status = '测试触发失败')
                 this.buildNum = res.data.buildNumber
                 this.loading = true
@@ -61,7 +61,7 @@ export default {
 
         // setTimeout递归函数,以及条件结束递归
         result() {
-            result({ jobName: 'sitespeed-test', buildNum: this.buildNum }).then((res) => {
+            result({ jobName: 'sitespeed-test', buildNum: this.buildNum }).then(res => {
                 if (res.succ === true) {
                     if (res.data.buildResult === null) {
                         this.status = 'WAIT...'

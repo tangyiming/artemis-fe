@@ -32,9 +32,9 @@ export default {
     },
     computed: {
         ...mapState({
-            activeHeader: (state) => state.activeHeader,
-            activeSider: (state) => state.activeSider,
-            openKey: (state) => state.openKey,
+            activeHeader: state => state.activeHeader,
+            activeSider: state => state.activeSider,
+            openKey: state => state.openKey,
         }),
     },
     props: {

@@ -57,7 +57,7 @@ import router from '@/router'
 import Footer from '@/components/Footer'
 
 function hasErrors(fieldsError) {
-    return Object.keys(fieldsError).some((field) => fieldsError[field])
+    return Object.keys(fieldsError).some(field => fieldsError[field])
 }
 
 export default {
@@ -93,7 +93,7 @@ export default {
             e.preventDefault()
             this.form.validateFields((err, values) => {
                 if (!err) {
-                    login(values).then((res) => {
+                    login(values).then(res => {
                         if (res.succ) {
                             localStorage['token'] = JSON.stringify(res.data)
                             let userid = values['userid']

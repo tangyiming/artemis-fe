@@ -17,16 +17,16 @@ axios.defaults.baseURL = '/api/'
 // process.env.NODE_ENV === 'development' ? '/api/' : ''
 
 axios.interceptors.request.use(
-    (config) => {
+    config => {
         //使用slice去掉token两边的双引号
         config.headers.Authorization = typeof localStorage['token'] == 'undefined' ? 'no auth' : localStorage['token'].slice(1, -1)
         return config
     },
-    (error) => Promise.reject(error)
+    error => Promise.reject(error)
 )
 axios.interceptors.response.use(
-    (response) => checkCode(response),
-    (err) => {
+    response => checkCode(response),
+    err => {
         if (err.response.status === 401 && err.response.data.msg === '非授权访问') {
             message.warning({ content: '非授权访问，请先登录！' })
         }

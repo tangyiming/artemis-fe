@@ -29,8 +29,8 @@
                                 :defaultActiveFirstOption="false"
                                 :showArrow="false"
                                 :filterOption="false"
-                                @search="(val) => handleSearch('department', val)"
-                                @change="(val) => handleChange('department', val)"
+                                @search="val => handleSearch('department', val)"
+                                @change="val => handleChange('department', val)"
                             >
                                 <a-select-option v-for="d in departmentList" :key="d">{{ d }}</a-select-option>
                             </a-select>
@@ -45,8 +45,8 @@
                                 :defaultActiveFirstOption="false"
                                 :showArrow="false"
                                 :filterOption="false"
-                                @search="(val) => handleSearch('machineOwner', val)"
-                                @change="(val) => handleChange('machineOwner', val)"
+                                @search="val => handleSearch('machineOwner', val)"
+                                @change="val => handleChange('machineOwner', val)"
                             >
                                 <a-select-option v-for="d in machineOwnerList" :key="d">{{ d }}</a-select-option>
                             </a-select>
@@ -61,8 +61,8 @@
                                 :defaultActiveFirstOption="false"
                                 :showArrow="false"
                                 :filterOption="false"
-                                @search="(val) => handleSearch('holderName', val)"
-                                @change="(val) => handleChange('holderName', val)"
+                                @search="val => handleSearch('holderName', val)"
+                                @change="val => handleChange('holderName', val)"
                             >
                                 <a-select-option v-for="d in holderNameList" :key="d">{{ d }}</a-select-option>
                             </a-select>
@@ -77,8 +77,8 @@
                                 :defaultActiveFirstOption="false"
                                 :showArrow="false"
                                 :filterOption="false"
-                                @search="(val) => handleSearch('equipmentType', val)"
-                                @change="(val) => handleChange('equipmentType', val)"
+                                @search="val => handleSearch('equipmentType', val)"
+                                @change="val => handleChange('equipmentType', val)"
                             >
                                 <a-select-option v-for="d in equipmentTypeList" :key="d">{{ d }}</a-select-option>
                             </a-select>
@@ -108,7 +108,7 @@
                     class="pagination-style"
                     v-model="current"
                     size="small"
-                    :showTotal="(total) => `全部 ${total} 条`"
+                    :showTotal="total => `全部 ${total} 条`"
                     :defaultPageSize="5"
                     :total="total"
                     :pageSizeOptions="pageSizeOptions"
@@ -371,7 +371,7 @@ export default {
     },
     mounted: function () {
         let p = { pageNum: 1, pageSize: 5 }
-        getAssetInfo(p).then((res) => {
+        getAssetInfo(p).then(res => {
             this.tabledata = res.data.data
             this.total = res.data.total
         })
@@ -382,7 +382,7 @@ export default {
     methods: {
         handleSearch: _.debounce((key, val) => {
             let p = { [key]: val }
-            queryAsset(p).then((res) => {
+            queryAsset(p).then(res => {
                 switch (Object.keys(p)[0]) {
                     case 'department':
                         _this.departmentList = res.data
@@ -424,7 +424,7 @@ export default {
                 holderName: this.holderName,
                 equipmentType: this.equipmentType,
             }
-            getAssetInfo(p).then((res) => {
+            getAssetInfo(p).then(res => {
                 this.tabledata = res.data.data
                 this.total = res.data.total
             })
@@ -450,7 +450,7 @@ export default {
             this.form.validateFields((err, values) => {
                 if (!err) {
                     if (this.addOrUpdateFlag === 'add') {
-                        addAsset(values).then((res) => {
+                        addAsset(values).then(res => {
                             if (res.code === '804') {
                                 this.$message.warning(res.msg)
                             } else {
@@ -460,21 +460,21 @@ export default {
                                 getAssetInfo({
                                     pageNum: parseInt(this.current),
                                     pageSize: parseInt(this.pageSize),
-                                }).then((res) => {
+                                }).then(res => {
                                     this.tabledata = res.data.data
                                     this.total = res.data.total
                                 })
                             }
                         })
                     } else {
-                        updateAsset({ ...values, id: this.assetId }).then((res) => {
+                        updateAsset({ ...values, id: this.assetId }).then(res => {
                             if (res.code === '0') {
                                 this.visible = false
                                 this.form.resetFields()
                                 getAssetInfo({
                                     pageNum: parseInt(this.current),
                                     pageSize: parseInt(this.pageSize),
-                                }).then((res) => {
+                                }).then(res => {
                                     this.tabledata = res.data.data
                                     this.total = res.data.total
                                 })
@@ -493,7 +493,7 @@ export default {
             this.current = current
             this.pageSize = size
             let p = { pageNum: current, pageSize: size }
-            getAssetInfo(p).then((res) => {
+            getAssetInfo(p).then(res => {
                 this.tabledata = res.data.data
                 this.total = res.data.total
             })
@@ -502,7 +502,7 @@ export default {
             this.current = page
             this.pageSize = pageSize
             let p = { pageNum: parseInt(page), pageSize: parseInt(pageSize) }
-            getAssetInfo(p).then((res) => {
+            getAssetInfo(p).then(res => {
                 this.tabledata = res.data.data
                 this.total = res.data.total
             })
@@ -513,7 +513,7 @@ export default {
                 pageSize: 1,
                 id: record.id,
             }
-            getAssetInfo(p).then((res) => {
+            getAssetInfo(p).then(res => {
                 let data = res.data.data[0]
                 //setTimeout修复antd bug：You cannot set a form field before rendering a field associated with the value.
                 setTimeout(() => {
@@ -540,7 +540,7 @@ export default {
                     pageNum: parseInt(this.current),
                     pageSize: parseInt(this.pageSize),
                 }
-                getAssetInfo(p).then((res) => {
+                getAssetInfo(p).then(res => {
                     this.tabledata = res.data.data
                     this.total = res.data.total
                 })
