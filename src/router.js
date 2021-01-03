@@ -26,28 +26,12 @@ export default new Router({
             component: () => import(/* webpackChunkName: "customUpload" */ './views/404'),
         },
         {
-            path: '/cicd',
-            name: 'cicd',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "customUpload" */ './views/cicd'),
-        },
-        {
             path: '/apitest',
             name: 'apitest',
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
             component: () => import(/* webpackChunkName: "customUpload" */ './views/apitest'),
-        },
-        {
-            path: '/uitest',
-            name: 'uitest',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "customUpload" */ './views/uitest'),
         },
         {
             path: '/login',
@@ -94,23 +78,6 @@ export default new Router({
                     path: 'loadresults',
                     // eslint-disable-next-line prettier/prettier
                     component: require('./views/perftest/loadResults').default,
-                },
-            ],
-        },
-        {
-            path: '/toolset',
-            name: 'toolset',
-            component: () => import('./views/toolset'),
-            children: [
-                {
-                    path: 'testassertmanage',
-                    // eslint-disable-next-line prettier/prettier
-                    component: require('./views/toolset/testAssertManage').default,
-                },
-                {
-                    path: 'mock',
-                    // eslint-disable-next-line prettier/prettier
-                    component: require('./views/toolset/mock').default,
                 },
             ],
         },

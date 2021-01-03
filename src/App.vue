@@ -14,11 +14,8 @@
                     <a-menu theme="light" mode="horizontal" :defaultSelectedKeys="defaultSelectedKeys" class="top-menu" @click="handleMenuClick" :key="headerKey">
                         <!-- 默认key值一定要与url路径xxx/key/xxxx相同 -->
                         <a-menu-item key="home">首页</a-menu-item>
-                        <a-menu-item key="cicd">持续交付</a-menu-item>
                         <a-menu-item key="apitest">接口测试</a-menu-item>
                         <a-menu-item key="perftest">性能测试</a-menu-item>
-                        <a-menu-item key="uitest">UI测试</a-menu-item>
-                        <a-menu-item key="toolset">工具集</a-menu-item>
                     </a-menu>
                     <span class="top-right">
                         <!--                        <a-icon type="bell" class="top-bell" />-->
@@ -162,21 +159,12 @@ export default {
                 case 'home':
                     this.$router.push({ path: '/' })
                     break
-                case 'cicd':
-                    this.$router.push({ path: '/cicd' })
-                    break
                 case 'apitest':
                     this.$router.push({ path: '/apitest' })
-                    break
-                case 'uitest':
-                    this.$router.push({ path: '/uitest' })
                     break
                 case 'perftest':
                     //默认转到该页第一个菜单上
                     this.$router.push({ path: '/perftest/dashboard' })
-                    break
-                case 'toolset':
-                    this.$router.push({ path: '/toolset/testassertmanage' })
                     break
                 case 'doc':
                     this.$router.push({ path: '/doc' })
