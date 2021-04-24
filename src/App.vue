@@ -35,7 +35,7 @@
                                         <a @click="logOut" v-else>登出</a>
                                     </a-menu-item>
                                     <a-menu-item key="1">
-                                        <a href="/doc">使用手册</a>
+                                        <a @click="toDoc">使用手册</a>
                                     </a-menu-item>
                                 </a-menu>
                             </a-dropdown>
@@ -44,7 +44,7 @@
                 </a-layout-header>
             </a-layout>
             <div>
-                <router-view />
+                <router-view v-if="isRouterAlive" />
             </div>
         </div>
     </a-config-provider>
@@ -56,6 +56,11 @@ import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN'
 
 export default {
     name: 'app',
+    provide() {
+        return {
+            reload: this.reload,
+        }
+    },
     data() {
         return {
             locale: zhCN,
@@ -64,6 +69,7 @@ export default {
             activeSider: '',
             openKey: '',
             headerKey: 1,
+            isRouterAlive: true,
         }
     },
 
@@ -133,17 +139,18 @@ export default {
                     paths = window.location.pathname.substring(1).split('/')
                     this.defaultSelectedKeys[0] = paths[0]
                     this.activeHeader = paths[0]
-                    this.activeSider = paths[1]
+                    // 解决路由使用query方式传参时，无法正确高亮侧边菜单
+                    this.activeSider = paths[1].split('?')[0]
                 } else {
                     this.defaultSelectedKeys[0] = 'home'
                 }
             } else {
                 if (window.location.hash !== '#/') {
                     paths = window.location.hash.substring(1).split('/')
-                    console.log((this.activeSider = paths[2]))
                     this.defaultSelectedKeys[0] = paths[1]
                     this.activeHeader = paths[1]
-                    this.activeSider = paths[2]
+                    // 解决路由使用query方式传参时，无法正确高亮侧边菜单
+                    this.activeSider = paths[2].split('?')[0]
                 } else {
                     this.defaultSelectedKeys[0] = 'home'
                 }
@@ -176,6 +183,16 @@ export default {
                     this.$router.push({ path: '/404' })
             }
         },
+        toDoc() {
+            this.$router.push({ path: '/doc' })
+        },
+        reload() {
+            this.isRouterAlive = false
+            this.$nextTick(function () {
+                this.isRouterAlive = true
+            })
+        },
+
     },
 }
 </script>

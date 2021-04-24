@@ -6,6 +6,9 @@ import './assets/styles/index.less'
 import router from './router'
 import store from './stores'
 import LeftSider from './components/LeftSider'
+import echarts from 'echarts'
+
+Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
 

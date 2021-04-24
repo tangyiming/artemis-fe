@@ -18,7 +18,6 @@ module.exports = {
             less: {
                 modifyVars: {
                     'searchform-bgcolor': '#fbfbfb',
-                    'icon-color': '#708090',
                     'primary-color':'#16817a'
                 },
                 javascriptEnabled: true

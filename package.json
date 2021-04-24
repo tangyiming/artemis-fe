@@ -53,7 +53,8 @@
     "rules": {
       "no-unused-vars": 0,
       "no-console": 0,
-      "no-extra-boolean-cast":0
+      "no-debugger": "off",
+      "no-extra-boolean-cast": 0
     },
     "parserOptions": {
       "parser": "babel-eslint"
@@ -78,7 +79,8 @@
     "printWidth": 200,
     "bracketSpacing": true,
     "vueIndentScriptAndStyle": false,
-    "arrowParens":"avoid"
+    "arrowParens": "avoid",
+    "endOfLine": "crlf"
   },
   "postcss": {
     "plugins": {
