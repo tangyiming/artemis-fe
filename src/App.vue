@@ -192,7 +192,6 @@ export default {
                 this.isRouterAlive = true
             })
         },
-
     },
 }
 </script>

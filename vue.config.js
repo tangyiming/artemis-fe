@@ -27,9 +27,10 @@ module.exports = {
     devServer: {
         hot: true,
         port: 8080,
-        //host: '172.172.1.89:8080',
+        //host: ''web.xxxx.com', //配置此host并求改本地hosts
         //disableHostCheck: true,
         open: false,
+        https: true, //是否开启https
         proxy: {
             '/api': {
                 target: 'http://127.0.0.1:8081/',//172.172.1.89
