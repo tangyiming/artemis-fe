@@ -36,8 +36,6 @@
 </template>
 
 <script>
-// import reqwest from 'reqwest'
-
 import { save } from '@/requests/performance'
 
 export default {
